@@ -4,13 +4,13 @@
       <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
       <br><br>
       <ul class="list-group">
-        <div *ngIf="onlyOdd">
+        <div *appUnless="onlyOdd">
           <li class="list-group-item" [ngClass]="{odd: odd % 2 !== 0}"
             [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'blue' : 'transparent'}" *ngFor="let number of oddNumbers">
             {{number}}
           </li>
         </div>
-        <div *ngIf="!onlyOdd">
+        <div *appUnless="!onlyOdd">
           <li class="list-group-item" [ngClass]="{odd: even % 2 === 0}"
             [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'blue' : 'transparent'}" *ngFor="let number of evenNumbers">
             {{number}}
@@ -26,9 +26,12 @@
         in a way that is
         independent of the underlying platform. It provides a safer and more reliable way to interact with the DOM
         compared to direct manipulation.</p>
-      <ng-template [ngIf]="onlyOdd">
-        <p>Only odd</p>
-      </ng-template>
+    </div>
+    <div [ngSwitch]="value">
+      <p *ngSwitchCase="5">Value is 5</p>
+      <p *ngSwitchCase="10">Value is 10</p>
+      <p *ngSwitchCase="15">Value is 15</p>
+      <p *ngSwitchCaseDefault></p>
     </div>
   </div>
 </div>
